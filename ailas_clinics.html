@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AILAS Clinics – Best Clinic in Medipally</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --teal:#0F6E56;--teal-light:#1D9E75;--teal-pale:#E1F5EE;--teal-mid:#5DCAA5;
+    --cream:#FAFAF7;--white:#FFFFFF;--dark:#1a2e28;--mid:#3d5a50;--muted:#7a9e93;
+    --accent:#E8F5F0;--gold:#c9a227;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'DM Sans',sans-serif;
+    background:var(--cream);
+    color:var(--dark);
+    overflow-x:hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1rem 2.5rem;
+    background:rgba(250,250,247,0.85);
+    backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(15,110,86,0.12);
+    transition:all 0.3s;
+  }
+  .nav-logo{
+    font-family:'Playfair Display',serif;
+    font-size:1.4rem;color:var(--teal);font-weight:700;
+    letter-spacing:-0.02em;
+  }
+  .nav-logo span{color:var(--teal-light);font-style:italic;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{
+    text-decoration:none;color:var(--mid);font-size:0.88rem;
+    font-weight:500;letter-spacing:0.03em;
+    transition:color 0.2s;
+  }
+  .nav-links a:hover{color:var(--teal);}
+  .nav-cta{
+    background:var(--teal);color:#fff;
+    border:none;padding:0.55rem 1.3rem;
+    border-radius:50px;font-family:'DM Sans',sans-serif;
+    font-size:0.85rem;font-weight:600;
+    cursor:pointer;letter-spacing:0.02em;
+    transition:all 0.25s;text-decoration:none;
+  }
+  .nav-cta:hover{background:var(--teal-light);transform:translateY(-1px);}
+
+  /* ─── HERO ─── */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;
+    position:relative;overflow:hidden;
+    padding:7rem 2.5rem 4rem;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse 80% 60% at 70% 40%, rgba(29,158,117,0.1) 0%, transparent 70%),
+               radial-gradient(ellipse 50% 50% at 20% 80%, rgba(15,110,86,0.06) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  .hero-orb{
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+  }
+  .orb1{
+    width:500px;height:500px;
+    right:-100px;top:-100px;
+    background:radial-gradient(circle, rgba(29,158,117,0.15) 0%, rgba(29,158,117,0.04) 50%, transparent 70%);
+    animation:float1 8s ease-in-out infinite;
+  }
+  .orb2{
+    width:300px;height:300px;
+    left:10%;bottom:10%;
+    background:radial-gradient(circle, rgba(15,110,86,0.1) 0%, transparent 70%);
+    animation:float2 11s ease-in-out infinite;
+  }
+  .orb3{
+    width:200px;height:200px;
+    right:25%;bottom:20%;
+    background:radial-gradient(circle, rgba(93,202,165,0.12) 0%, transparent 70%);
+    animation:float3 7s ease-in-out infinite;
+  }
+  @keyframes float1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-20px,20px) scale(1.05);}}
+  @keyframes float2{0%,100%{transform:translate(0,0);}50%{transform:translate(15px,-15px);}}
+  @keyframes float3{0%,100%{transform:translate(0,0);}33%{transform:translate(10px,10px);}66%{transform:translate(-10px,5px);}}
+
+  /* 3D DNA helix decoration */
+  .hero-3d{
+    position:absolute;right:5%;top:50%;transform:translateY(-50%);
+    width:280px;height:400px;
+    opacity:0.18;pointer-events:none;
+  }
+
+  .hero-content{position:relative;z-index:2;max-width:620px;}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:0.5rem;
+    background:var(--teal-pale);color:var(--teal);
+    padding:0.4rem 1rem;border-radius:50px;
+    font-size:0.8rem;font-weight:600;letter-spacing:0.05em;
+    text-transform:uppercase;margin-bottom:1.5rem;
+    border:1px solid rgba(15,110,86,0.2);
+    animation:fadeUp 0.6s ease both;
+  }
+  .star-icon{color:var(--gold);font-size:0.9rem;}
+  .hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.5rem,5vw,4rem);
+    line-height:1.12;
+    color:var(--dark);
+    margin-bottom:1.2rem;
+    animation:fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 em{color:var(--teal);font-style:italic;}
+  .hero p{
+    font-size:1.05rem;color:var(--mid);
+    line-height:1.7;margin-bottom:2rem;
+    max-width:480px;
+    animation:fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-actions{
+    display:flex;gap:1rem;flex-wrap:wrap;
+    animation:fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary{
+    background:var(--teal);color:#fff;
+    border:none;padding:0.85rem 2rem;
+    border-radius:50px;font-size:1rem;font-weight:600;
+    cursor:pointer;text-decoration:none;
+    display:inline-flex;align-items:center;gap:0.5rem;
+    transition:all 0.3s;box-shadow:0 4px 20px rgba(15,110,86,0.3);
+  }
+  .btn-primary:hover{background:var(--teal-light);transform:translateY(-2px);box-shadow:0 8px 30px rgba(15,110,86,0.4);}
+  .btn-secondary{
+    background:transparent;color:var(--teal);
+    border:2px solid var(--teal);padding:0.85rem 2rem;
+    border-radius:50px;font-size:1rem;font-weight:600;
+    cursor:pointer;text-decoration:none;
+    display:inline-flex;align-items:center;gap:0.5rem;
+    transition:all 0.3s;
+  }
+  .btn-secondary:hover{background:var(--teal-pale);transform:translateY(-2px);}
+
+  /* ─── FLOATING CALL BAR ─── */
+  .call-float{
+    position:fixed;bottom:2rem;right:2rem;z-index:200;
+    display:flex;flex-direction:column;gap:0.7rem;align-items:flex-end;
+  }
+  .call-btn-main{
+    background:var(--teal);color:#fff;
+    border:none;padding:1rem 1.5rem;
+    border-radius:50px;font-size:1rem;font-weight:700;
+    cursor:pointer;display:flex;align-items:center;gap:0.5rem;
+    box-shadow:0 6px 24px rgba(15,110,86,0.45);
+    transition:all 0.3s;font-family:'DM Sans',sans-serif;
+    animation:pulse-ring 2s ease-in-out infinite;
+    text-decoration:none;
+  }
+  .call-btn-main:hover{transform:scale(1.05);box-shadow:0 8px 32px rgba(15,110,86,0.6);}
+  @keyframes pulse-ring{
+    0%,100%{box-shadow:0 6px 24px rgba(15,110,86,0.45);}
+    50%{box-shadow:0 6px 24px rgba(15,110,86,0.45),0 0 0 8px rgba(15,110,86,0.12);}
+  }
+  .wa-btn{
+    background:#25D366;color:#fff;
+    border:none;padding:0.75rem 1.2rem;
+    border-radius:50px;font-size:0.9rem;font-weight:600;
+    cursor:pointer;display:flex;align-items:center;gap:0.4rem;
+    box-shadow:0 4px 16px rgba(37,211,102,0.4);
+    transition:all 0.3s;font-family:'DM Sans',sans-serif;
+    text-decoration:none;
+  }
+  .wa-btn:hover{transform:scale(1.05);}
+
+  /* ─── STATS ─── */
+  .stats-strip{
+    background:var(--teal);
+    padding:2.5rem;
+    display:flex;justify-content:center;gap:0;
+    flex-wrap:wrap;
+  }
+  .stat-item{
+    text-align:center;
+    padding:1rem 3rem;
+    border-right:1px solid rgba(255,255,255,0.2);
+    animation:fadeUp 0.5s ease both;
+  }
+  .stat-item:last-child{border-right:none;}
+  .stat-num{
+    font-family:'Playfair Display',serif;
+    font-size:2.5rem;color:#fff;font-weight:700;
+    line-height:1;
+  }
+  .stat-label{font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:0.3rem;letter-spacing:0.05em;text-transform:uppercase;}
+
+  /* ─── SECTIONS ─── */
+  section{padding:6rem 2.5rem;}
+  .section-inner{max-width:1100px;margin:0 auto;}
+  .section-tag{
+    display:inline-block;
+    font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--teal);margin-bottom:0.8rem;
+  }
+  .section-title{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.8rem,3.5vw,2.6rem);
+    color:var(--dark);margin-bottom:1rem;line-height:1.2;
+  }
+  .section-sub{font-size:1rem;color:var(--muted);max-width:500px;line-height:1.7;}
+
+  /* ─── ABOUT / DOCTOR CARD ─── */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem;}
+  @media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:2rem;}}
+  .doctor-card{
+    background:#fff;border-radius:24px;
+    padding:2.5rem;
+    box-shadow:0 20px 60px rgba(15,110,86,0.1);
+    position:relative;overflow:hidden;
+  }
+  .doctor-card::before{
+    content:'';position:absolute;top:-60px;right:-60px;
+    width:200px;height:200px;border-radius:50%;
+    background:radial-gradient(circle,rgba(29,158,117,0.12) 0%,transparent 70%);
+  }
+  .doc-avatar{
+    width:90px;height:90px;border-radius:50%;
+    background:linear-gradient(135deg,var(--teal-pale),var(--teal-mid));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;
+    font-size:2rem;font-weight:700;color:var(--teal);
+    margin-bottom:1.2rem;border:3px solid var(--teal-pale);
+  }
+  .doc-name{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--dark);margin-bottom:0.3rem;}
+  .doc-title{font-size:0.85rem;color:var(--teal);font-weight:600;letter-spacing:0.05em;margin-bottom:1rem;}
+  .doc-desc{font-size:0.95rem;color:var(--mid);line-height:1.7;margin-bottom:1.5rem;}
+  .doc-pills{display:flex;flex-wrap:wrap;gap:0.5rem;}
+  .pill{
+    background:var(--teal-pale);color:var(--teal);
+    padding:0.3rem 0.9rem;border-radius:50px;
+    font-size:0.78rem;font-weight:600;letter-spacing:0.03em;
+  }
+  .about-text h3{
+    font-family:'Playfair Display',serif;
+    font-size:1.5rem;color:var(--dark);margin-bottom:1rem;
+  }
+  .about-text p{font-size:0.95rem;color:var(--mid);line-height:1.8;margin-bottom:1rem;}
+  .feature-list{list-style:none;display:flex;flex-direction:column;gap:0.8rem;margin-top:1.5rem;}
+  .feature-list li{
+    display:flex;align-items:flex-start;gap:0.8rem;
+    font-size:0.95rem;color:var(--mid);
+  }
+  .feat-icon{
+    width:28px;height:28px;border-radius:8px;
+    background:var(--teal-pale);
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.85rem;flex-shrink:0;margin-top:1px;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-section{background:var(--dark);}
+  .services-section .section-title{color:#fff;}
+  .services-section .section-tag{color:var(--teal-mid);}
+  .services-section .section-sub{color:rgba(255,255,255,0.5);}
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:1.5rem;margin-top:3rem;
+  }
+  .service-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:20px;padding:2rem 1.5rem;
+    transition:all 0.3s;cursor:default;
+    position:relative;overflow:hidden;
+  }
+  .service-card::after{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 50% 0%,rgba(29,158,117,0.15) 0%,transparent 60%);
+    opacity:0;transition:opacity 0.3s;
+  }
+  .service-card:hover{
+    background:rgba(255,255,255,0.08);
+    border-color:rgba(29,158,117,0.4);
+    transform:translateY(-4px);
+  }
+  .service-card:hover::after{opacity:1;}
+  .svc-emoji{font-size:2rem;margin-bottom:1rem;display:block;}
+  .svc-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;margin-bottom:0.5rem;}
+  .svc-desc{font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.6;}
+
+  /* ─── HOURS ─── */
+  .hours-section{background:#fff;}
+  .hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-top:3rem;}
+  @media(max-width:768px){.hours-grid{grid-template-columns:1fr;gap:2rem;}}
+  .hours-table{width:100%;border-collapse:collapse;}
+  .hours-table tr{border-bottom:1px solid #f0f0f0;}
+  .hours-table td{padding:0.8rem 0;font-size:0.92rem;}
+  .hours-table td:first-child{color:var(--mid);font-weight:500;}
+  .hours-table td:last-child{text-align:right;color:var(--teal);font-weight:600;}
+  .hours-table tr.sunday td{color:var(--muted);}
+  .hours-table tr.sunday td:last-child{color:var(--muted);}
+  .info-card{
+    background:var(--teal);
+    border-radius:20px;padding:2rem;color:#fff;
+  }
+  .info-card h3{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:1.5rem;}
+  .info-row{display:flex;gap:0.8rem;margin-bottom:1.2rem;align-items:flex-start;}
+  .info-icon{font-size:1.2rem;margin-top:2px;flex-shrink:0;}
+  .info-label{font-size:0.75rem;color:rgba(255,255,255,0.65);margin-bottom:0.1rem;letter-spacing:0.05em;}
+  .info-val{font-size:0.95rem;color:#fff;font-weight:500;}
+  .info-val a{color:#fff;text-decoration:none;}
+
+  /* ─── REVIEWS ─── */
+  .reviews-section{background:var(--accent);}
+  .reviews-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;margin-top:3rem;
+  }
+  .review-card{
+    background:#fff;border-radius:20px;padding:1.8rem;
+    box-shadow:0 4px 20px rgba(15,110,86,0.06);
+    transition:transform 0.3s;
+  }
+  .review-card:hover{transform:translateY(-4px);}
+  .review-stars{color:var(--gold);font-size:0.9rem;margin-bottom:0.8rem;letter-spacing:2px;}
+  .review-text{font-size:0.9rem;color:var(--mid);line-height:1.7;margin-bottom:1.2rem;font-style:italic;}
+  .review-author{font-size:0.82rem;font-weight:600;color:var(--dark);}
+
+  /* ─── MAP / CONTACT ─── */
+  .contact-section{background:var(--cream);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;align-items:start;}
+  @media(max-width:768px){.contact-grid{grid-template-columns:1fr;}}
+  .map-embed{
+    border-radius:20px;overflow:hidden;
+    box-shadow:0 10px 40px rgba(0,0,0,0.1);
+    height:350px;
+  }
+  .map-embed iframe{width:100%;height:100%;border:none;}
+  .contact-details{display:flex;flex-direction:column;gap:1.2rem;}
+  .contact-item{
+    display:flex;gap:1rem;align-items:flex-start;
+    background:#fff;border-radius:16px;padding:1.2rem 1.5rem;
+    box-shadow:0 2px 12px rgba(0,0,0,0.04);
+  }
+  .contact-item-icon{
+    width:42px;height:42px;border-radius:12px;
+    background:var(--teal-pale);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.2rem;flex-shrink:0;
+  }
+  .contact-item-label{font-size:0.75rem;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.2rem;}
+  .contact-item-val{font-size:0.95rem;color:var(--dark);font-weight:500;}
+  .contact-item-val a{color:var(--teal);text-decoration:none;font-weight:600;}
+
+  /* ─── ACTION BTNS ─── */
+  .action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem;}
+  @media(max-width:600px){.action-grid{grid-template-columns:1fr;}}
+  .action-btn{
+    display:flex;align-items:center;justify-content:center;gap:0.6rem;
+    padding:0.9rem;border-radius:14px;font-size:0.9rem;font-weight:600;
+    text-decoration:none;transition:all 0.25s;border:none;cursor:pointer;
+    font-family:'DM Sans',sans-serif;
+  }
+  .action-call{background:var(--teal);color:#fff;box-shadow:0 4px 16px rgba(15,110,86,0.3);}
+  .action-call:hover{background:var(--teal-light);transform:translateY(-2px);}
+  .action-wa{background:#25D366;color:#fff;box-shadow:0 4px 16px rgba(37,211,102,0.3);}
+  .action-wa:hover{filter:brightness(1.1);transform:translateY(-2px);}
+  .action-dir{background:var(--dark);color:#fff;box-shadow:0 4px 16px rgba(0,0,0,0.15);}
+  .action-dir:hover{background:var(--mid);transform:translateY(-2px);}
+
+  /* ─── FOOTER ─── */
+  footer{
+    background:var(--dark);padding:3rem 2.5rem 2rem;
+    text-align:center;
+  }
+  .footer-logo{
+    font-family:'Playfair Display',serif;
+    font-size:1.6rem;color:#fff;margin-bottom:0.5rem;
+  }
+  .footer-logo span{color:var(--teal-mid);font-style:italic;}
+  .footer-sub{font-size:0.82rem;color:rgba(255,255,255,0.4);margin-bottom:1.5rem;}
+  .footer-links{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+  .footer-links a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.85rem;transition:color 0.2s;}
+  .footer-links a:hover{color:var(--teal-mid);}
+  .footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.25);}
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+  .reveal.visible{opacity:1;transform:none;}
+
+  /* ─── 3D CUBE decorations ─── */
+  .cube-scene{
+    position:absolute;
+    perspective:600px;pointer-events:none;
+  }
+  .cube{
+    width:60px;height:60px;
+    position:relative;
+    transform-style:preserve-3d;
+    animation:rotateCube 12s linear infinite;
+  }
+  .cube-face{
+    position:absolute;width:60px;height:60px;
+    border:1px solid rgba(29,158,117,0.3);
+    background:rgba(29,158,117,0.04);
+  }
+  .face-front {transform:translateZ(30px);}
+  .face-back  {transform:rotateY(180deg) translateZ(30px);}
+  .face-left  {transform:rotateY(-90deg) translateZ(30px);}
+  .face-right {transform:rotateY(90deg) translateZ(30px);}
+  .face-top   {transform:rotateX(90deg) translateZ(30px);}
+  .face-bottom{transform:rotateX(-90deg) translateZ(30px);}
+  @keyframes rotateCube{from{transform:rotateX(0) rotateY(0);}to{transform:rotateX(360deg) rotateY(360deg);}}
+
+  /* ─── mobile ─── */
+  @media(max-width:640px){
+    nav{padding:0.8rem 1.2rem;}
+    .nav-links{display:none;}
+    section{padding:4rem 1.2rem;}
+    .stats-strip{gap:0;}
+    .stat-item{padding:1rem 1.5rem;}
+    .hero{padding:6rem 1.2rem 3rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Ailas<span>Clinics</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#hours">Hours</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:+919966209657" class="nav-cta">📞 Call Now</a>
+</nav>
+
+<!-- FLOATING CALL -->
+<div class="call-float">
+  <a href="https://wa.me/+916304561758" target="_blank" class="wa-btn">💬 WhatsApp</a>
+  <a href="tel:+919966209657" class="call-btn-main">📞 099662 09657</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-orb orb3"></div>
+
+  <!-- 3D cube decoration top-right -->
+  <div class="cube-scene" style="right:12%;top:18%;">
+    <div class="cube">
+      <div class="cube-face face-front"></div>
+      <div class="cube-face face-back"></div>
+      <div class="cube-face face-left"></div>
+      <div class="cube-face face-right"></div>
+      <div class="cube-face face-top"></div>
+      <div class="cube-face face-bottom"></div>
+    </div>
+  </div>
+  <!-- 3D cube small -->
+  <div class="cube-scene" style="right:30%;bottom:25%;opacity:0.6;">
+    <div class="cube" style="width:32px;height:32px;animation-duration:9s;">
+      <div class="cube-face face-front" style="width:32px;height:32px;"></div>
+      <div class="cube-face face-back" style="width:32px;height:32px;transform:rotateY(180deg) translateZ(16px);"></div>
+      <div class="cube-face face-left" style="width:32px;height:32px;transform:rotateY(-90deg) translateZ(16px);"></div>
+      <div class="cube-face face-right" style="width:32px;height:32px;transform:rotateY(90deg) translateZ(16px);"></div>
+      <div class="cube-face face-top" style="width:32px;height:32px;transform:rotateX(90deg) translateZ(16px);"></div>
+      <div class="cube-face face-bottom" style="width:32px;height:32px;transform:rotateX(-90deg) translateZ(16px);"></div>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge"><span class="star-icon">★</span> 4.9 · 302 Reviews · Medipally's #1</div>
+    <h1>Your Health,<br/><em>Our Commitment</em></h1>
+    <p>Trusted general medicine care for your family in Medipally & Boduppal. Dr. Mote Srikanth brings expertise, compassion, and clarity to every consultation.</p>
+    <div class="hero-actions">
+      <a href="tel:+919966209657" class="btn-primary">📞 Book Appointment</a>
+      <a href="#about" class="btn-secondary">Meet the Doctor</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-num">4.9★</div><div class="stat-label">Google Rating</div></div>
+  <div class="stat-item"><div class="stat-num">302+</div><div class="stat-label">Happy Patients</div></div>
+  <div class="stat-item"><div class="stat-num">13h</div><div class="stat-label">Open Daily</div></div>
+  <div class="stat-item"><div class="stat-num">₹Low</div><div class="stat-label">Consultation Fee</div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" style="background:#fff;">
+  <div class="section-inner">
+    <span class="section-tag">About the Clinic</span>
+    <h2 class="section-title">Care You Can Trust</h2>
+    <p class="section-sub">AILAS Clinics is Medipally's most loved general practice — clean, professional, and genuinely caring.</p>
+    <div class="about-grid">
+      <div class="doctor-card">
+        <div class="doc-avatar">MS</div>
+        <div class="doc-name">Dr. Mote Srikanth</div>
+        <div class="doc-title">General Practitioner · MBBS</div>
+        <p class="doc-desc">An experienced and compassionate physician known for listening carefully, diagnosing precisely, and explaining every step clearly. Patients love his honest, affordable approach to care.</p>
+        <div class="doc-pills">
+          <span class="pill">General Medicine</span>
+          <span class="pill">Fever & Infections</span>
+          <span class="pill">Family Care</span>
+          <span class="pill">Chronic Conditions</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <h3>Why Patients Choose AILAS Clinics</h3>
+        <p>From Medipally to Boduppal, families trust AILAS Clinics for everyday health needs. Whether it's a persistent fever, swelling, chronic illness, or a routine check-up — Dr. Srikanth's clinic is the first call people make.</p>
+        <ul class="feature-list">
+          <li><div class="feat-icon">🏥</div> Clean, well-maintained clinic environment</li>
+          <li><div class="feat-icon">💊</div> Affordable treatment with effective outcomes</li>
+          <li><div class="feat-icon">🤝</div> Polite, supportive staff — zero judgment</li>
+          <li><div class="feat-icon">🔬</div> Accurate diagnosis with practical home advice</li>
+          <li><div class="feat-icon">📞</div> Reachable by phone and WhatsApp</li>
+          <li><div class="feat-icon">🕐</div> Open 7 days — including early mornings</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services-section">
+  <div class="section-inner">
+    <span class="section-tag">What We Treat</span>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">Comprehensive general medicine for all ages — from children to seniors.</p>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="svc-emoji">🤒</span>
+        <div class="svc-name">Fever & Infections</div>
+        <p class="svc-desc">Viral, bacterial — quick diagnosis with clear treatment plan and home-care advice.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="svc-emoji">🩺</span>
+        <div class="svc-name">General Consultation</div>
+        <p class="svc-desc">Thorough check-ups with detailed history taking and personalised advice.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="svc-emoji">🫁</span>
+        <div class="svc-name">Respiratory Care</div>
+        <p class="svc-desc">Cough, cold, asthma and breathing difficulties — managed with proven protocols.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="svc-emoji">💉</span>
+        <div class="svc-name">Diabetes & BP</div>
+        <p class="svc-desc">Long-term monitoring and medication management for lifestyle conditions.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="svc-emoji">🦵</span>
+        <div class="svc-name">Pain & Swelling</div>
+        <p class="svc-desc">Infections, injuries, and inflammatory conditions — diagnosed promptly.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="svc-emoji">👨‍👩‍👧</span>
+        <div class="svc-name">Family Medicine</div>
+        <p class="svc-desc">A trusted family doctor for all ages — from toddlers to grandparents.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section id="hours" class="hours-section">
+  <div class="section-inner">
+    <span class="section-tag">Visiting Hours</span>
+    <h2 class="section-title">We're Here When You Need Us</h2>
+    <p class="section-sub">Open 7 days a week with early-morning slots for working professionals.</p>
+    <div class="hours-grid">
+      <table class="hours-table reveal">
+        <tr><td>Monday</td><td>7:30 AM – 9:00 PM</td></tr>
+        <tr><td>Tuesday</td><td>7:30 AM – 9:00 PM</td></tr>
+        <tr><td>Wednesday</td><td>7:30 AM – 9:00 PM</td></tr>
+        <tr><td>Thursday</td><td>7:30 AM – 9:00 PM</td></tr>
+        <tr><td>Friday</td><td>7:30 AM – 9:00 PM</td></tr>
+        <tr><td>Saturday</td><td>7:30 AM – 9:00 PM</td></tr>
+        <tr class="sunday"><td>Sunday</td><td>9:00 AM – 12:00 PM</td></tr>
+      </table>
+      <div class="info-card reveal">
+        <h3>Quick Contact</h3>
+        <div class="info-row">
+          <div class="info-icon">📞</div>
+          <div>
+            <div class="info-label">Phone</div>
+            <div class="info-val"><a href="tel:+919966209657">099662 09657</a></div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">💬</div>
+          <div>
+            <div class="info-label">WhatsApp</div>
+            <div class="info-val"><a href="https://wa.me/+916304561758" target="_blank">+91 63045 61758</a></div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-label">Address</div>
+            <div class="info-val">12-183, Street No. 1, P&T Colony, Medipally, Peerzadiguda, Hyd – 500098</div>
+          </div>
+        </div>
+        <div style="margin-top:1.5rem;display:flex;gap:0.8rem;flex-wrap:wrap;">
+          <a href="tel:+919966209657" class="btn-primary" style="font-size:0.85rem;padding:0.7rem 1.4rem;">📞 Call</a>
+          <a href="https://wa.me/+916304561758" target="_blank" class="btn-secondary" style="font-size:0.85rem;padding:0.7rem 1.4rem;border-color:#fff;color:#fff;">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="reviews-section">
+  <div class="section-inner">
+    <span class="section-tag">Patient Stories</span>
+    <h2 class="section-title">What Our Patients Say</h2>
+    <p class="section-sub">Real words from real patients — rated 4.9 across 302 Google reviews.</p>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The clinic ambience is good, clean, and well-maintained. Dr. Srikanth is experienced and explains everything clearly. One of the best doctors in P&T Colony."</p>
+        <div class="review-author">— Verified Google Review</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I had leg swelling and was afraid I'd need hospitalisation. Dr. Srikanth diagnosed it as an infection and gave medicines — cured in 5 days. Humble doctor with great knowledge."</p>
+        <div class="review-author">— Verified Google Review</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"He listened carefully to my symptoms, explained possible causes clearly, and gave practical advice. His guidance helped me recover quickly. Best doctor in Boduppal area."</p>
+        <div class="review-author">— Verified Google Review</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Dr. Srikanth gives proper time to understand the patient's problem. Treatment was good, and his consistent follow-up and attention to detail really helped improve my health."</p>
+        <div class="review-author">— Verified Google Review</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Doctor gave best treatment with low cost. The services were good and the staff and doctors were excellent in all ways."</p>
+        <div class="review-author">— Verified Google Review</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"From the moment we stepped into his office, we felt welcomed and cared for. Truly a doctor who puts patients first."</p>
+        <div class="review-author">— Verified Google Review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-inner">
+    <span class="section-tag">Find Us</span>
+    <h2 class="section-title">Visit AILAS Clinics</h2>
+    <p class="section-sub">Conveniently located in Medipally, easily accessible from Boduppal, Peerzadiguda & LB Nagar.</p>
+    <div class="contact-grid">
+      <div class="map-embed reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.7!2d78.5970806!3d17.4105514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9fa9f47b7413%3A0x62584bea39074d61!2sAILAS%20CLINICS%20BEST%20CLINIC%20IN%20MEDIPALLY!5e0!3m2!1sen!2sin!4v1"
+          allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+      <div class="contact-details reveal">
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div>
+            <div class="contact-item-label">Address</div>
+            <div class="contact-item-val">12-183, Street No. 1, P&T Colony, Medipally, Canara Nagar, Peerzadiguda, Hyderabad – 500098</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-val"><a href="tel:+919966209657">099662 09657</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">💬</div>
+          <div>
+            <div class="contact-item-label">WhatsApp</div>
+            <div class="contact-item-val"><a href="https://wa.me/+916304561758" target="_blank">+91 63045 61758</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">⭐</div>
+          <div>
+            <div class="contact-item-label">Google Rating</div>
+            <div class="contact-item-val">4.9 / 5 · 302 Reviews</div>
+          </div>
+        </div>
+        <div class="action-grid">
+          <a href="tel:+919966209657" class="action-btn action-call">📞 Call</a>
+          <a href="https://wa.me/+916304561758" target="_blank" class="action-btn action-wa">💬 WhatsApp</a>
+          <a href="https://maps.google.com/?cid=7086497483018685793" target="_blank" class="action-btn action-dir">🗺 Directions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Ailas<span>Clinics</span></div>
+  <div class="footer-sub">Best Clinic in Medipally · Est. Peerzadiguda, Hyderabad</div>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#hours">Hours</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:+919966209657">📞 Call</a>
+    <a href="https://wa.me/+916304561758" target="_blank">💬 WhatsApp</a>
+  </div>
+  <div class="footer-copy">© 2025 AILAS Clinics. All rights reserved. · 12-183 Street No. 1, P&T Colony, Medipally</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+  },{threshold:0.12});
+  reveals.forEach(r=>obs.observe(r));
+
+  // Stagger service cards
+  document.querySelectorAll('.service-card').forEach((c,i)=>{
+    c.style.transitionDelay = (i*0.08)+'s';
+  });
+  document.querySelectorAll('.review-card').forEach((c,i)=>{
+    c.style.transitionDelay = (i*0.06)+'s';
+  });
+
+  // Nav scroll effect
+  window.addEventListener('scroll',()=>{
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY>60 ? '0 4px 24px rgba(0,0,0,0.08)' : 'none';
+  });
+
+  // Smooth scroll for anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+  });
+</script>
+</body>
+</html>
